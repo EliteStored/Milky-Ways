@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplaneta Y - Gigante Gaseoso</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0d1a0d 0%, #1a3e1a 50%, #0d1a0d 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .planet-title {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #4caf50, #66bb6a, #43a047);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #007cff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-button:hover {
+            background: #0056b3;
+        }
+        .planet-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .info-card h3 {
+            color: #4caf50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            .planet-info {
+                grid-template-columns: 1fr;
+            }
+            .planet-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="star-field" id="starField"></div>
+    
+    <a href="perseo.html" class="back-button">← Volver al Brazo Perseo</a>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="planet-title">Exoplaneta Y</h1>
+            <p>Un impresionante gigante gaseoso con sistema de anillos complejo</p>
+        </div>
+        
+        <div class="planet-info">
+            <div class="info-card">
+                <h3>🌪️ Características del Planeta</h3>
+                <p><strong>Tipo:</strong> Gigante Gaseoso</p>
+                <p><strong>Radio:</strong> 11.2 veces el de la Tierra</p>
+                <p><strong>Masa:</strong> 318 masas terrestres</p>
+                <p><strong>Temperatura atmosférica:</strong> -145°C</p>
+                <p><strong>Composición:</strong> 89% hidrógeno, 10% helio, 1% otros gases</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>⭐ Sistema Estelar</h3>
+                <p><strong>Estrella:</strong> Estrella tipo F8V</p>
+                <p><strong>Distancia:</strong> 1,240 años luz de la Tierra</p>
+                <p><strong>Constelación:</strong> Perseus</p>
+                <p><strong>Período orbital:</strong> 4.3 años terrestres</p>
+                <p><strong>Distancia orbital:</strong> 2.8 UA de su estrella</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>💫 Sistema de Anillos</h3>
+                <p>Posee un espectacular sistema de anillos compuesto por partículas de hielo y roca.</p>
+                <p>Los anillos se extienden hasta 150,000 km del planeta.</p>
+                <p>Se observan al menos 47 lunas orbitando este gigante gaseoso.</p>
+                <p>Tres de sus lunas principales muestran actividad geológica.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🌀 Fenómenos Atmosféricos</h3>
+                <p>Tormentas gigantescas que pueden durar décadas.</p>
+                <p>Vientos que alcanzan velocidades de hasta 500 km/h.</p>
+                <p>Auroras polares causadas por su intenso campo magnético.</p>
+                <p>Bandas de nubes de colores debido a diferentes compuestos químicos.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Crear campo de estrellas animado
+        function createStars() {
+            const starField = document.getElementById('starField');
+            const numStars = 100;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = star.style.height = Math.random() * 3 + 1 + 'px';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starField.appendChild(star);
+            }
+        }
+        
+        createStars();
+    </script>
+</body>
+</html>

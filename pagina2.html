@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplaneta Y</title>
+    <link rel="stylesheet" href="leaflet/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .back-button:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="window.location.href='perseo.html';">← Volver al Brazo Perseo</button>
+    <div id="map"></div>
+
+    <script src="leaflet/leaflet.js"></script>
+    <script>
+        var map = L.map('map', {
+            center: [0, 0],
+            zoom: 2,
+            maxZoom: 3,
+            minZoom: 1,
+            scrollWheelZoom: false,
+            dragging: false,
+        });
+
+        var imageUrl = 'base naranja.jpg';
+        var imageBounds = [[-90, -180], [90, 180]];
+
+        L.imageOverlay(imageUrl, imageBounds).addTo(map);
+        map.fitBounds(imageBounds);
+
+        var locations = [
+            { coords: [0, 0], url: '#', label: 'Exoplaneta Y - Mundo desértico' },
+        ];
+
+        locations.forEach(function(location) {
+            var marker = L.marker(location.coords).addTo(map);
+            marker.bindPopup(`<div style="text-align: center; padding: 10px;">${location.label}</div>`);
+        });
+
+        map.on('click', function(e) {
+            var coord = e.latlng;
+            var lat = coord.lat;
+            var lng = coord.lng;
+            L.popup()
+                .setLatLng([lat, lng])
+                .setContent("Coordenadas: X: " + lng.toFixed(2) + ", Y: " + lat.toFixed(2))
+                .openOn(map);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de la Vía Láctea con Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh; /* Altura del mapa */
+            width: 100%; /* Ancho del mapa */
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Crear el mapa con opciones para deshabilitar el scroll y arrastre
+        var map = L.map('map', {
+            center: [0, 0], // Centrado en el espacio
+            zoom: 2, // Nivel de zoom
+            maxZoom: 3, // Zoom máximo
+            minZoom: 1, // Zoom mínimo
+            scrollWheelZoom: false, // Desactiva zoom con la rueda del ratón
+            dragging: false, // Desactiva arrastrar el mapa
+        });
+
+        // Cargar la imagen de la Vía Láctea
+        var imageUrl = 'brazo perseo.jpg'; // Reemplaza con la URL de tu imagen
+        var imageBounds = [[-90, -180], [90, 180]]; // Límites de la imagen
+
+        // Agregar la imagen como capa al mapa
+        L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+        // Ajustar el mapa a los límites de la imagen
+        map.fitBounds(imageBounds);
+
+        var locations = [
+            { coords: [46.07, 19.11], url: 'Kepler-22B.html', label: 'Kepler 22b' },
+            { coords: [61.33, -44.48], url: 'pagina2.html', label: 'Exoplaneta Y' },
+            { coords: [31, 100], url: 'pagina3.html', label: 'Exoplaneta Z' },
+            { coords: [10, -49], url: 'pagina1.html', label: 'Exoplaneta X' },
+        ];
+
+        locations.forEach(function(location) {
+            var marker = L.marker(location.coords).addTo(map);
+            marker.bindPopup(`<button onclick="window.location.href='${location.url}';">${location.label}</button>`);
+        });
+
+        // Función para obtener coordenadas al hacer clic
+        map.on('click', function(e) {
+            var coord = e.latlng;
+            var lat = coord.lat;
+            var lng = coord.lng;
+            L.popup()
+                .setLatLng([lat, lng])
+                .setContent("Coordenadas: X: " + lng.toFixed(2) + ", Y: " + lat.toFixed(2))
+                .openOn(map);
+        });
+    </script>
+</body>
+</html>

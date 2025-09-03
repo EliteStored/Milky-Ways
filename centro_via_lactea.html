@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de la Vía Láctea - Núcleo Galáctico</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh; /* Altura del mapa */
+            width: 100%; /* Ancho del mapa */
+        }
+        .info-panel {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            max-width: 300px;
+            z-index: 1000;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #007cff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .back-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="info-panel">
+        <h3>Centro de la Vía Láctea</h3>
+        <p>El núcleo galáctico es la región central de nuestra galaxia, hogar de un agujero negro supermasivo llamado Sagitario A*.</p>
+        <p>Esta zona está densamente poblada de estrellas y es el corazón gravitacional de la Vía Láctea.</p>
+    </div>
+    
+    <button class="back-button" onclick="window.location.href='index.html';">← Volver al Mapa</button>
+    
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Crear el mapa
+        var map = L.map('map', {
+            center: [0, 0], // Centrado en el espacio
+            zoom: 2, // Nivel de zoom
+            maxZoom: 4, // Zoom máximo
+            minZoom: 1 // Zoom mínimo
+        });
+
+        // Cargar la imagen del núcleo
+        var imageUrl = 'nucleo.jpg';
+        var imageBounds = [[-90, -180], [90, 180]]; // Límites de la imagen
+
+        // Agregar la imagen como capa al mapa
+        L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+        // Ajustar el mapa a los límites de la imagen
+        map.fitBounds(imageBounds);
+
+        // Función para obtener coordenadas al hacer clic
+        map.on('click', function(e) {
+            var coord = e.latlng;
+            var lat = coord.lat;
+            var lng = coord.lng;
+            L.popup()
+                .setLatLng([lat, lng])
+                .setContent("Coordenadas: X: " + lng.toFixed(2) + ", Y: " + lat.toFixed(2))
+                .openOn(map);
+        });
+    </script>
+</body>
+</html>

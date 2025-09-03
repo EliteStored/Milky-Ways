@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplaneta X - Mundo Rocoso</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a0d0d 0%, #3e1a1a 50%, #1a0d0d 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .planet-title {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #007cff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-button:hover {
+            background: #0056b3;
+        }
+        .planet-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .info-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            .planet-info {
+                grid-template-columns: 1fr;
+            }
+            .planet-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="star-field" id="starField"></div>
+    
+    <a href="perseo.html" class="back-button">← Volver al Brazo Perseo</a>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="planet-title">Exoplaneta X</h1>
+            <p>Un mundo rocoso con características únicas en el Brazo de Perseo</p>
+        </div>
+        
+        <div class="planet-info">
+            <div class="info-card">
+                <h3>🪨 Características del Planeta</h3>
+                <p><strong>Tipo:</strong> Planeta Rocoso</p>
+                <p><strong>Radio:</strong> 1.8 veces el de la Tierra</p>
+                <p><strong>Masa:</strong> 3.2 masas terrestres</p>
+                <p><strong>Temperatura superficial:</strong> 85°C</p>
+                <p><strong>Composición:</strong> Núcleo de hierro, corteza de silicatos</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>⭐ Sistema Estelar</h3>
+                <p><strong>Estrella:</strong> Estrella tipo K2V</p>
+                <p><strong>Distancia:</strong> 890 años luz de la Tierra</p>
+                <p><strong>Constelación:</strong> Perseus</p>
+                <p><strong>Período orbital:</strong> 127 días terrestres</p>
+                <p><strong>Excentricidad:</strong> 0.15 (órbita ligeramente elíptica)</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🌋 Actividad Geológica</h3>
+                <p>Este planeta muestra signos de intensa actividad volcánica debido a las fuerzas de marea de su estrella.</p>
+                <p>La superficie está cubierta de vastas llanuras de lava solidificada y cadenas montañosas volcánicas.</p>
+                <p>Se detectan emisiones de vapor de agua y gases volcánicos en su atmósfera.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🔬 Datos de Observación</h3>
+                <p>Descubierto mediante el método de velocidad radial en 2019.</p>
+                <p>Su densa atmósfera de CO₂ y vapor de agua crea un efecto invernadero extremo.</p>
+                <p>Las observaciones espectroscópicas revelan la presencia de minerales de hierro en la superficie.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Crear campo de estrellas animado
+        function createStars() {
+            const starField = document.getElementById('starField');
+            const numStars = 100;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = star.style.height = Math.random() * 3 + 1 + 'px';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starField.appendChild(star);
+            }
+        }
+        
+        createStars();
+    </script>
+</body>
+</html>

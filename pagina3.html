@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplaneta Z - Mundo Oceánico</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0d0d1a 0%, #1a1a3e 50%, #0d0d1a 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .planet-title {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #2196f3, #03a9f4, #00bcd4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #007cff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-button:hover {
+            background: #0056b3;
+        }
+        .planet-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .info-card h3 {
+            color: #2196f3;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            .planet-info {
+                grid-template-columns: 1fr;
+            }
+            .planet-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="star-field" id="starField"></div>
+    
+    <a href="perseo.html" class="back-button">← Volver al Brazo Perseo</a>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="planet-title">Exoplaneta Z</h1>
+            <p>Un fascinante mundo oceánico con vastos mares subsuperficiales</p>
+        </div>
+        
+        <div class="planet-info">
+            <div class="info-card">
+                <h3>🌊 Características del Planeta</h3>
+                <p><strong>Tipo:</strong> Mundo Oceánico</p>
+                <p><strong>Radio:</strong> 2.1 veces el de la Tierra</p>
+                <p><strong>Masa:</strong> 6.8 masas terrestres</p>
+                <p><strong>Temperatura superficial:</strong> -2°C</p>
+                <p><strong>Composición:</strong> 70% agua, 30% roca y hielo</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>⭐ Sistema Estelar</h3>
+                <p><strong>Estrella:</strong> Estrella tipo M3V (enana roja)</p>
+                <p><strong>Distancia:</strong> 2,100 años luz de la Tierra</p>
+                <p><strong>Constelación:</strong> Perseus</p>
+                <p><strong>Período orbital:</strong> 45 días terrestres</p>
+                <p><strong>Acoplamiento de marea:</strong> Sí (una cara siempre hacia la estrella)</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🏔️ Geografía Oceánica</h3>
+                <p>Océanos globales con profundidades de hasta 100 km.</p>
+                <p>Cadenas de islas volcánicas emergen del océano.</p>
+                <p>Corrientes termales mantienen el agua líquida.</p>
+                <p>Casquetes polares de hielo de agua en las regiones más frías.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🧬 Potencial Astrobiológico</h3>
+                <p>Las condiciones son ideales para la vida acuática.</p>
+                <p>Ventilaciones hidrotermales en el fondo oceánico podrían sustentar ecosistemas.</p>
+                <p>Análisis espectral sugiere la presencia de compuestos orgánicos.</p>
+                <p>La actividad tectónica mantiene un ciclo geoquímico activo.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Crear campo de estrellas animado
+        function createStars() {
+            const starField = document.getElementById('starField');
+            const numStars = 100;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = star.style.height = Math.random() * 3 + 1 + 'px';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starField.appendChild(star);
+            }
+        }
+        
+        createStars();
+    </script>
+</body>
+</html>
